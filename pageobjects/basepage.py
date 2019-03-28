@@ -120,29 +120,3 @@ class BasePage:
         except:
             return False
 
-
-class ParametrizedTestCase(unittest.TestCase):
-    """ TestCase classes that want to be parametrized should
-        inherit from this class.参数化
-    """
-
-    def __init__(self, methodName='runTest', param=None):
-        super(ParametrizedTestCase, self).__init__(methodName)
-        self.param = param
-
-    @staticmethod
-    def parametrize(testcase_class, defName=None, param=None):
-        """ Create a suite containing all tests taken from the given
-            subclass, passing them the parameter 'param'.
-        """
-        testloader = unittest.TestLoader()
-        testnames = testloader.getTestCaseNames(testcase_class)
-        suite = unittest.TestSuite()
-        if defName != None:
-            for name in testnames:
-                if name == defName:
-                    suite.addTest(testcase_class(name, param=param))
-        else:
-            for name in testnames:
-                suite.addTest(testcase_class(name, param=param))
-        return suite
