@@ -24,7 +24,7 @@ class ProductLogin:
         driver = webdriver.Chrome(options=chrome_options)
         driver.implicitly_wait(10)  # 等待
         driver.get(production_url)
-        driver.find_element_by_id("vcc_code").send_keys(vcc[0])  # 登录
+        driver.find_element_by_id("vcc").send_keys(vcc[0])  # 登录
         driver.find_element_by_id("username").send_keys(username[0])
         driver.find_element_by_id("password").send_keys(password)
         driver.find_element_by_id('btn').click()
