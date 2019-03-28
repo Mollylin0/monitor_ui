@@ -10,7 +10,7 @@ class ProductLogin:
     """登录线上环境，把获取的token写入配置文件"""
 
     def login_production(self):
-        """selenium+chromeheadless获取线上环境Token"""
+        """selenium+chromeheadless获取Token"""
         logger = Logger.get_logger()
         config = ReadConfig()   # 获取配置
         vcc = config.get_userinfo("vcc").split(",")
@@ -22,7 +22,7 @@ class ProductLogin:
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
-        driver.implicitly_wait(10)  # 等待
+        driver.implicitly_wait(10)  
         driver.get(production_url)
         driver.find_element_by_id("vcc").send_keys(vcc[0])  # 登录
         driver.find_element_by_id("username").send_keys(username[0])
